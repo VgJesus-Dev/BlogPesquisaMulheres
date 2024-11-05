@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mulheres</title> </head> 
+    
+<!-- Define o tipo de documento HTML, a linguagem do documento (português do Brasil) e define o título da página -->
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Estilo do formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="submit"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+form input[type="submit"] {
+    background-color: #0056b3;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+form input[type="submit"]:hover {
+    background-color: #004494;
+}
+
+/* Estilos da tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th,
+table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #0056b3;
+    color: #fff;
+    
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Limitação de largura e quebras de linha */
+table th:nth-child(4),
+table td:nth-child(4) {
+    width: 25%; /* Ajuste a largura conforme necessário */
+    word-break: break-word; /* Força a quebra de linha dentro da célula */
+    white-space: pre-wrap; /* Mantém espaços e quebras de linha */
+    ;
+}
+
+/* Mensagem caso não haja dados */
+h1.empty-message {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+    @media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+
+    table tr {
+        margin-bottom: 10px;
+    }
+
+    table th {
+        display: none; /* Esconde cabeçalho em dispositivos pequenos */
+    }
+
+    table td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 5px;
+        border-bottom: 1px solid #ddd;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    table td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+}
+</style>
+<body>
+    <main>
+        <h1>Cadastro</h1>
+        <!-- Define um título "Cadastro" para a seção de formulário -->
+        <form action="" method="POST">
+            <!-- Define um formulário HTML para cadastro, com método POST e sem ação definida (será definido no servidor) -->
+            <input type="text" name="nome" placeholder="Insira o seu nome "><br><br>
+            <!-- Campo de entrada de texto para o nome, com nome "nome" e placeholder -->
+            <input type="text" name="sobrenome" placeholder="Insira o seu sobrenome"><br><br>
+            <!-- Campo de entrada de texto para o sobrenome, com nome "sobrenome" e placeholder -->
+            <input type="email" name="email" placeholder="Insira seu e-mail"><br><br>
+            <!-- Campo de entrada de email, com nome "email" e placeholder -->
+            <input type="text" name="descricao" placeholder="Insira sua descrição"><br><br>
+            <!-- Campo de entrada de texto para a descrição, com nome "descricao" e placeholder -->
+            <input type="submit" value="Enviar"> 
+            <!-- Botão de submit para enviar o formulário -->
+        </form>
+
+        <h1>Lista de Estudantes</h1>
+        <!-- Define um título "Lista de Estudantes" para a seção de lista -->
+        <table border="1" width="100%">
+            <!-- Define uma tabela com borda e largura de 100% -->
+            <tr>
+                <th>Nome</th>
+                <th>sobreNome</th>
+                <th>email</th>
+                <th>descricao</th>
+            </tr>
+            <!-- Define a linha de cabeçalho da tabela -->
+            <% if (pesquisadores.length > 0) { %> 
+                <!-- Se a variável `pesquisadores` tem elementos, executa o bloco abaixo -->
+                <% for (var i = 0; i < pesquisadores.length; i++) { %> 
+                    <!-- Loop para iterar sobre cada elemento da variável `pesquisadores` -->
+                    <tr>
+                        <td><%= pesquisadores[i].nome %></td> 
+                        <!-- Imprime o valor da propriedade "nome" do objeto atual -->
+                        <td><%= pesquisadores[i].sobrenome %></td> 
+                        <!-- Imprime o valor da propriedade "sobrenome" do objeto atual -->
+                        <td><%= pesquisadores[i].email %></td> 
+                        <!-- Imprime o valor da propriedade "email" do objeto atual -->
+                        <td><%= pesquisadores[i].descricao %></td> 
+                        <!-- Imprime o valor da propriedade "descricao" do objeto atual -->
+                    </tr>
+                <% } %>
+            <% } else { %> 
+                <!-- Se a variável `pesquisadores` está vazia, executa o bloco abaixo -->
+                <h1>Não temos pesquisadores no Banco de Dados!</h1>
+            <% } %> 
+        </table>
+    </main>
+</body>
+
+</html>
